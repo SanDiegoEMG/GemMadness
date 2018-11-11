@@ -1,3 +1,17 @@
 #spacing {
     padding-top: 10pt;
 }
+#instructions {
+    text-align:justify;
+    padding: 10pt 20pt 20pt 20pt;
+}
+
+button {
+    width: 120px;
+    height: 50px;
+    border-style: solid;
+    padding: 2px;
+    margin: 2px;
+    color: darkcyan;
+  }
+
