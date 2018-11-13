@@ -13,5 +13,19 @@ button {
     padding: 2px;
     margin: 2px;
     color: darkcyan;
+    cursor: pointer; 
   }
+
+  body {
+    background-color: #d3c5fa;
+    background-image: url("https://www.transparenttextures.com/patterns/az-subtle.png");
+  }
+
+  .gem {
+      border-radius: 10%;
+  } 
+  .gem:hover {
+    border-radius: 10%;
+    cursor: pointer; 
+}
 

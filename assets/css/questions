@@ -1,1 +1,8 @@
 how to get images to float left so they are aligned and made smaller on smaller view sizes? If I float the row left and float none the next row, still screws up layout
+
+
+
+gemNumber function (x) I pass through an x and then return to it ....What is the difference between that and CompGuess with no x in ()?
+
+$(document).ready(function () why this is staying white?
+
