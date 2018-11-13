@@ -34,7 +34,7 @@ $(document).ready(function () {
 
     //BIG function to wrap up everything I want to happen 
     function playGame() {
-        y = compNumber(compN);
+        y = compNumber();
         console.log("y = compNumber   console print y = " + y);
 
         //generate numbers for each gem image
@@ -62,84 +62,99 @@ $(document).ready(function () {
                 win++;
                 $("#wins").text(win);
                 $("#sumNum").text("Excellent! You won this round!");
+                y = compNumber();
+                gemNum1 = gemNumber();
+                gemNum2 = gemNumber();
+                gemNum3 = gemNumber();
+                gemNum4 = gemNumber();
+                sum = 0;
+                $("#sumNum").text(sum);
+
             }
             else if (sum >= y) {
                 $("#sumNum").text(sum);
                 loss++;
                 $("#losses").text(loss);
                 $("#sumNum").text("Too bad. You went over and lost this round.")
+                y = compNumber();
+                gemNum1 = gemNumber();
+                gemNum2 = gemNumber();
+                gemNum3 = gemNumber();
+                gemNum4 = gemNumber();
+                sum = 0;
+                $("#sumNum").text(sum);
             }
         })
 
-        $("#gemstone2").click(function () {
-            event.preventDefault();
-            addArray.push(gemNum2);
-            console.log(addArray.length);
-            console.log(addArray);
-            sum += gemNum2;
-            console.log("New score: " + sum);
-            $("#sumNum").text(sum);
-            console.log("This is y: " + y);
-            if (sum === y) {
-                $("#sumNum").text(sum);
-                win++;
-                $("#wins").text(win);
-                $("#sumNum").text("Excellent! You won this round!");
-            }
-            else if (sum >= y) {
-                $("#sumNum").text(sum);
-                loss++;
-                $("#losses").text(loss);
-                $("#sumNum").text("Too bad. You went over and lost this round");
-            }
-        })
+        // $("#gemstone2").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum2);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum2;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round");
+        //     }
+        // })
 
-        $("#gemstone3").click(function () {
-            event.preventDefault();
-            addArray.push(gemNum3);
-            console.log(addArray.length);
-            console.log(addArray);
-            sum += gemNum3;
-            console.log("New score: " + sum);
-            $("#sumNum").text(sum);
-            console.log("This is y: " + y);
-            if (sum === y) {
-                $("#sumNum").text(sum);
-                win++;
-                $("#wins").text(win);
-                $("#sumNum").text("Excellent! You won this round!");
-            }
-            else if (sum >= y) {
-                $("#sumNum").text(sum);
-                loss++;
-                $("#losses").text(loss);
-                $("#sumNum").text("Too bad. You went over and lost this round.")
-            }
-        })
+        // $("#gemstone3").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum3);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum3;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round.")
+        //     }
+        // })
 
-        $("#gemstone4").click(function () {
-            event.preventDefault();
-            addArray.push(gemNum4);
-            console.log(addArray.length);
-            console.log(addArray);
-            sum += gemNum4;
-            console.log("New score: " + sum);
-            $("#sumNum").text(sum);
-            console.log("This is y: " + y);
-            if (sum === y) {
-                $("#sumNum").text(sum);
-                win++;
-                $("#wins").text(win);
-                $("#sumNum").text("Excellent! You won this round!");
+        // $("#gemstone4").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum4);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum4;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
         
-            }
-            else if (sum >= y) {
-                $("#sumNum").text(sum);
-                loss++;
-                $("#losses").text(loss);
-                $("#sumNum").text("Too bad. You went over and lost this round.")
-            }
-        })
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round.")
+        //     }
+        // })
     }
 
     playGame();

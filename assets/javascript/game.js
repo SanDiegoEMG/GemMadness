@@ -1,144 +1,162 @@
-<script type="text/javascript">
+
+
 
 $(document).ready(function () {
 
+    // array for gem image values
     var gemArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    //array to hold values for addition
     var addArray = [];
+    //variables 
     var sum = 0;
     var win = 0;
     var loss = 0;
+    // why do I throw a consule error if I declare var compN in the function below??
     var compN = 0;
 
-    // generate random number between 19-120 & have print to correct place on screen
-    // used return and don't really understand it
-    // moved this function up bc it is core and I can call it later
+
+
+    //generate random number for player to match
     function compNumber() {
         var comp = Math.floor(Math.random() * (120 - 19 + 1) + 19);
         $("#randomNum").text(comp);
         compN = comp;
         return compN;
-    }
+    };
 
-    compNumber()
-
-    //generate random number between 1-12 for the gemstones and had it console.log ... got that but couldn't figure out how to attach to the images so score could be tallied ... moved to using an array 
+    //generate random number for the gem images
     function gemNumber() {
         var num = gemArray[Math.floor(Math.random() * gemArray.length)];
         console.log("Generated gemstone numbers: " + num)
         x = num;
         return x;
+    };
+
+    //generate numbers for each gem image
+    // jQuery to 
+
+    for (var i = 1; i <= 4; i++) {
+        $("#gemstone" + i).attr("data-crystal", gemNumber());
     }
 
+    $("#losses").text(loss);
+    $("#wins").text(win);
+    $("#sumNum").text(sum);
 
-    //looking at & applying things from the calculator exercise. this resets display numbers to 0 and calls the function that creates new comp number
-    function initializeRound() {
-        compNumber();
-        $("#losses").text(loss);
-        $("#wins").text(win);
-        $("#sumNum").text(sum);
+
+    
+
+    // function to 'start a round'
+    function playGame() {
+        y = compNumber();
+        $("#randomNum").text(y);
+
+        $(".gem").click(function (event) {
+            event.preventDefault();
+            console.log($(this).attr("id"), " my value is ", $(this).attr("data-crystal"));
+            var crystalScore = parseInt($(this).attr("data-crystal"));
+            sum += crystalScore;
+            console.log("New score: " + sum);
+            $("#sumNum").text(sum);
+
+            if (sum === y) {
+                $("#sumNum").text(sum);
+                win++;
+                $("#wins").text(win);
+                y = compNumber();
+
+                for (var i = 1; i <= 4; i++) {
+                    $("#gemstone" + i).attr("data-crystal", gemNumber());
+                }
+                sum = 0;
+                $("#sumNum").text(sum);
+            }
+            else if (sum >= y) {
+                $("#sumNum").text(sum);
+                loss++;
+                $("#losses").text(loss);
+                y = compNumber();
+                for (var i = 1; i <= 4; i++) {
+                    $("#gemstone" + i).attr("data-crystal", gemNumber());
+                }
+                sum = 0;
+                $("#sumNum").text(sum);
+            }
+        })
+
+        // $("#gemstone2").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum2);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum2;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round");
+        //     }
+        // })
+
+        // $("#gemstone3").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum3);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum3;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round.")
+        //     }
+        // })
+
+        // $("#gemstone4").click(function () {
+        //     event.preventDefault();
+        //     addArray.push(gemNum4);
+        //     console.log(addArray.length);
+        //     console.log(addArray);
+        //     sum += gemNum4;
+        //     console.log("New score: " + sum);
+        //     $("#sumNum").text(sum);
+        //     console.log("This is y: " + y);
+        //     if (sum === y) {
+        //         $("#sumNum").text(sum);
+        //         win++;
+        //         $("#wins").text(win);
+        //         $("#sumNum").text("Excellent! You won this round!");
+
+        //     }
+        //     else if (sum >= y) {
+        //         $("#sumNum").text(sum);
+        //         loss++;
+        //         $("#losses").text(loss);
+        //         $("#sumNum").text("Too bad. You went over and lost this round.")
+        //     }
+        // })
     }
 
-    var gemNum1 = gemNumber();
-    var gemNum2 = gemNumber();
-    var gemNum3 = gemNumber();
-    var gemNum4 = gemNumber();
-    //use button to reset & generate new compNum??!
-
-    $("#reset").on("click", function () {
-        initializeRound();
-    })
+    playGame();
 
 
+});
 
-
-
-    //stores a random value - created by function above - to each gemstone ... could write for loop if there were lots and lots of these
-
-
-
-
-
-    // var gems = document.querySelectorAll(".gem");
-
-    // for (let i = 0; i < 4; i++) {
-    //     var inForLoop = gemNumber(gemNum[i]);
-    //         gems.addEventListener('click', function () {
-    //         event.preventDefault();
-    //         addArray.push(inForLoop);
-    //         console.log(addArray.length);
-    //         console.log(addArray);
-    //         sum += inForLoop;
-    //         console.log("New score: " + sum);
-    //         $("#sumNum").text(sum);
-    //     })
-    // } 
-
-    //Assign genNum number to each gemstone and when clicked, send that number to an array/function that tallies & displays sumNum
-    // DRY!  for loop??
-    $("#gemstone1").on("click", function () {
-        event.preventDefault();
-        addArray.push(gemNum1);
-        console.log(addArray.length);
-        console.log(addArray);
-        sum += gemNum1;
-        console.log("New score: " + sum);
-        $("#sumNum").text(sum);
-    })
-
-    $("#gemstone2").on("click", function () {
-        event.preventDefault();
-        addArray.push(gemNum2);
-        console.log(addArray.length);
-        console.log(addArray);
-        sum += gemNum2;
-        console.log("New score: " + sum);
-        $("#sumNum").text(sum);
-    })
-
-    $("#gemstone3").on("click", function () {
-        event.preventDefault();
-        addArray.push(gemNum3);
-        console.log(addArray.length);
-        console.log(addArray);
-        sum += gemNum3;
-        console.log("New score: " + sum);
-        $("#sumNum").text(sum);
-    })
-
-    $("#gemstone4").on("click", function () {
-        event.preventDefault();
-        addArray.push(gemNum4);
-        console.log(addArray.length);
-        console.log(addArray);
-        sum += gemNum4;
-        console.log("New score: " + sum);
-        $("#sumNum").text(sum);
-    })
-
-
-    if (sum === compN) {
-        win++;
-        alert("You won this round!");
-    }
-    else if (sum >= compN) {
-        loss--;
-        alert("You lost this round!!");
-    }
-
-
-
-    if (wins + loss === 10 && wins > loss) {
-        confirm("Congratulations you won the game! Would you like to play again?");
-        if (true) {
-            initialize.Round();
-        }
-    }
-    else if (wins + loss === 10 && loss > win) {
-        confirm("Ruh roh. Guess this isn't your lucky day. Would you like to play again?");
-    }
-    //I only get the if conditional to work when it is included in the gemstone click event blocks ...added a parent element but still no luck!
-
-    //Complete reset to reset wins & losses - click button or automatically triggered when win+loss=10 
-
-})
-  </script>
